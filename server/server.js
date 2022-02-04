@@ -15,7 +15,11 @@ const port = 5000;
 // Puts the HTML and public folder up to see in broser
 app.use(express.static('server/public'));
 
-
+app.post('/calculate', function(req, res) {
+    console.log('Request at /quotes was made', req.body);
+    res.send('calculate recieved!');
+    // res.sendStatus(500);
+  });
 
 
 
