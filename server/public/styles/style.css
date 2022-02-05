@@ -5,5 +5,13 @@
 .calculator-keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    
+
+  }
+
+button {
+      max-width: 25px;
+  }
+
+.main {
+    max-width: 400px;
   }

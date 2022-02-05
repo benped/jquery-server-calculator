@@ -56,7 +56,7 @@ function calculator(mathObject){
     // }
     // return mathObject; 
 
-
+// --------------------------- STRING PARSER -----------------------------------
     // NOTE - this string parser was adapted from here: https://stackoverflow.com/a/16327230
 
 
@@ -66,30 +66,36 @@ function calculator(mathObject){
         let index = 0; 
         let operatorLast = true; //For checking if last char was an operator 
     
-        numbers[index] = "";
-    
+        numbers[index] = ""; //Making this part of the array defined. Later when we += this, if we don't define this, it will try to += on an undefined value
+        console.log('This is chars',chars);
+        console.log('this is numbers',numbers);
+        console.log('This is operators',operators);
+        
         // Parses the expression
         for (let char of chars) {
             if (isNaN(parseInt(char)) && char !== "." && !operatorLast) { //Checks if char is Not a Number, is not a . and the last char was Not an operator, if all true, it must be a new operator
-                operators[index] = char; 
-                index++;
-                numbers[index] = "";
+                operators[index] = char; // puts the operation in the array at the spot 
+                index++; // This will act as a seperator for for integers with multiple digits 
+                numbers[index] = ""; // Each part of this index needs to get defined before we += to it, so since we just iterated index, we need to defined this slot in numbers[] as an empty string
                 operatorLast = true;
             } else {
-                numbers[index] += char;
+                numbers[index] += char; // Because index is only iterated on operators, this will combine digits between operators into the same array value. 
                 operatorLast = false;
             }
         }
-
-        console.log(numbers);
-        console.log(operators);
+        // TEST LOGS
+        // console.log(index);
+        // console.log(numbers.length);
+        // console.log(numbers);
+        // console.log(operators);
         
     
         // Calculate the expression
-        mathObject.answer = parseFloat(numbers[0]);
+        mathObject.answer = parseFloat(numbers[0]); // numbers are numbers that are stored as strings. This pulls the string in as a number
+        // and sets the answer to that number. This calculates left to right, no PEMDAS (yet)
         for (let i = 0; i < operators.length; i++) {
-            var num = parseFloat(numbers[i + 1]);
-            switch (operators[i]) {
+            let num = parseFloat(numbers[i + 1]); // grabbing the next string in the numbers array and converting to number
+            switch (operators[i]) { // grabbing the first operator in the array and running the operation on the two numbers furthest to left in number array. 
                 case "+":
                     mathObject.answer = mathObject.answer + num;
                     break;
