@@ -9,16 +9,12 @@ let dataTest = {
 function onReady(){
     console.log('JS UP');
     $('#calculate').on('click',sendData);
-    $('#add').on('click',sendAdd);
-    $('#sub').on('click',sendSub);
-    $('#div').on('click',sendDiv);
-    $('#mul').on('click',sendMul);
+    $('.calculator-keys').on('click','button',addInputValue)
+    // $('#add').on('click',sendAdd);
+    // $('#sub').on('click',sendSub);
+    // $('#div').on('click',sendDiv);
+    // $('#mul').on('click',sendMul);
     $('#clear').on('click',clear);
-
-    // Was going to show 
-    // $("#div").on('click', function(){
-    //     $(this).toggleClass('shadow');
-    //  })
 }
 
 // Sends neccessary data to the server in an object to get maths done. 
@@ -26,8 +22,8 @@ function sendData(){
     dataTest.input1 = ($('#input1').val());
     dataTest.input2 = ($('#input2').val());
 
-    if (dataTest.input1 === ''||dataTest.input2 ===''){
-        alert('Enter Number into all fields!');
+    if (dataTest.input1 === ''){
+        alert('Enter Number!');
         return false;
     }
     if (dataTest.operator === ''){
@@ -111,4 +107,20 @@ $.ajax({
 function clear(){
     $('#input1').val('');
     $('#input2').val('');
+}
+
+function addInputValue(){
+    console.log($(this).val());
+    console.log('This is input val', $('#input1').val());
+    console.log(isNaN($(this).val()));
+    console.log(isNaN($('#input1').val()));
+    let inputString = ($('#input1').val()).toString() + ($(this).val()).toString();
+    console.log('This is inputString',inputString);
+    console.log('NaN for inputString',isNaN(inputString));
+    
+    
+    $('#input1').val(`${inputString}`);
+    // $('#input1').val('DOES IT TAKE ANYTHING?');
+    console.log($('#input1').val());
+    
 }

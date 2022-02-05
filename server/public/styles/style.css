@@ -1,3 +1,9 @@
 .shadow {
     border: 3px solid gray; 
 }
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+  }
