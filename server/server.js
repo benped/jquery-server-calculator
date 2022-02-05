@@ -32,26 +32,29 @@ app.get('/answers', function(req, res){
 // TODO let it take in an object and do math on it
 function calculator(mathObject){
     let answer;
-    let operator;
     switch (mathObject.operator){
-        case 'add':
+        case '+':
             answer = Number(mathObject.input1) + Number(mathObject.input2);
-            operator = '+';
+            // operator = '+';
+            mathObject.answer = answer; 
             break;
-        case 'sub':
+        case '-':
             answer = Number(mathObject.input1) - Number(mathObject.input2); 
-            operator = '-';
+            // operator = '-';
+            mathObject.answer = answer;
             break;
-        case 'div':
+        case '/':
             answer = Number(mathObject.input1) / Number(mathObject.input2); 
-            operator = '/';
+            // operator = '/';
+            mathObject.answer = answer;
             break;
-        case 'mul':
-        answer = Number(mathObject.input1) * Number(mathObject.input2); 
-        operator = '*';
-        break;
+        case '*':
+            answer = Number(mathObject.input1) * Number(mathObject.input2); 
+            // operator = '*';
+            mathObject.answer = answer;
+            break;
     }
-    return `${mathObject.input1} ${operator} ${mathObject.input2} = ${answer}`;
+    return mathObject; 
 }
 
 // start up our server

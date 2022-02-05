@@ -13,16 +13,29 @@ function onReady(){
     $('#sub').on('click',sendSub);
     $('#div').on('click',sendDiv);
     $('#mul').on('click',sendMul);
+    $('#clear').on('click',clear);
+
+    // Was going to show 
+    // $("#div").on('click', function(){
+    //     $(this).toggleClass('shadow');
+    //  })
 }
 
 // Sends neccessary data to the server in an object to get maths done. 
 function sendData(){
-
     dataTest.input1 = ($('#input1').val());
     dataTest.input2 = ($('#input2').val());
-    console.log(dataTest);
-    
 
+    if (dataTest.input1 === ''||dataTest.input2 ===''){
+        alert('Enter Number into all fields!');
+        return false;
+    }
+    if (dataTest.operator === ''){
+        alert("input operation!")
+        return false; 
+    }
+
+    console.log(dataTest);
     $.ajax({
         method: 'POST',
         url: '/calculate',
@@ -41,19 +54,20 @@ function sendData(){
 
 // Puts Add in the object that is sent to the dom. 
 function sendAdd(){
-    dataTest.operator = 'add';
+    dataTest.operator = '+';
 }
 
 function sendSub(){
-    dataTest.operator = 'sub';
+    dataTest.operator = '-';
 }
 
 function sendDiv(){
-    dataTest.operator = 'div';
+    dataTest.operator = '/';
+    // $('#div').toggle(.addClass('shadow'),.removeClass('shadow'));
 }
 
 function sendMul(){
-    dataTest.operator = 'mul';
+    dataTest.operator = '*';
 }
 
 
@@ -68,9 +82,13 @@ function clearDataTest(){
 
 
 function renderToDom(response){
+    $('#response').empty();
 
-    for (let answer of response){
-        $('#response').append(`<p>${answer}</p>`);
+    for (let mathObject of response){
+        $('#response').append(`<p>${mathObject.input1} ${mathObject.operator} ${mathObject.input2} 
+        = ${mathObject.answer}</p>`);
+        $('#lastAnswer').empty();
+        $('#lastAnswer').append(`${mathObject.answer}`);
     }
  
 }
@@ -89,3 +107,8 @@ $.ajax({
 })
 
 };
+
+function clear(){
+    $('#input1').val('');
+    $('#input2').val('');
+}
