@@ -29,6 +29,12 @@ app.get('/answers', function(req, res){
     res.send(mathExpressions);
 });
 
+app.delete('/delete', function(req, res){
+    console.log('Get at /delete', req.body);
+    mathExpressions = [];
+    res.send(mathExpressions);
+});
+
 // TODO let it take in an object and do math on it
 function calculator(mathObject){
     // let answer;
@@ -114,6 +120,8 @@ function calculator(mathObject){
         console.log(mathObject.input1);
         return mathObject;
     }
+
+
 
 // start up our server
 app.listen(port, function() {

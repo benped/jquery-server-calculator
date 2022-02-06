@@ -16,6 +16,7 @@ function onReady(){
     // $('#div').on('click',sendDiv);
     // $('#mul').on('click',sendMul);
     $('#clear').on('click',clear);
+    $('.dd').on('click','#delete',deleteArray);
 }
 
 // ------------------------ SERVER TALKING FUNCTIONS --------------------------------
@@ -73,11 +74,13 @@ function deleteArray(){
         method: 'DELETE',
         url: '/delete'
     }).then(function(response){
-        console.log('Delete success!,' response);
+        console.log('Delete success!,', response);
         getAnswerBack();
     }).catch(function(response){
         console.log('Delete failed');
     })
+    $('#lastAnswer').empty();
+    $('.dd').empty();
 }
 
 
@@ -111,7 +114,9 @@ function clearDataTest(){
 
 function renderToDom(response){
     $('#response').empty();
-
+    if (response.length > 0){
+    $('.dd').append(`<button id="delete">Delete Array</button>`)
+    };
     for (let mathObject of response){
         $('#response').append(`<p>${mathObject.input1} 
         = ${mathObject.answer}</p>`);

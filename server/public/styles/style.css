@@ -71,3 +71,7 @@ h1 {
 p {
     color:azure;
 }
+
+#delete {
+    width: 100px;
+}
