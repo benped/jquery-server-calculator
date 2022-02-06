@@ -1,5 +1,7 @@
 $(document).ready(onReady);
 
+let storedArray = [];
+
 let dataTest = {
     input1: '',
     // DEPRECATED PARTS OF OBJECT
@@ -17,6 +19,7 @@ function onReady(){
     // $('#mul').on('click',sendMul);
     $('#clear').on('click',clear);
     $('.dd').on('click','#delete',deleteArray);
+    $('#response').on('click','p',reEnter);
 }
 
 // ------------------------ SERVER TALKING FUNCTIONS --------------------------------
@@ -113,15 +116,17 @@ function clearDataTest(){
 
 
 function renderToDom(response){
+    storedArray = response;
     $('#response').empty();
     if (response.length > 0){
+    $('.dd').empty();
     $('.dd').append(`<button id="delete">Delete Array</button>`)
     };
-    for (let mathObject of response){
-        $('#response').append(`<p>${mathObject.input1} 
-        = ${mathObject.answer}</p>`);
+    for (let i=0; i<response.length; i++ ){
+        $('#response').append(`<p id="${i}">${response[i].input1} 
+        = ${response[i].answer}</p>`);
         $('#lastAnswer').empty();
-        $('#lastAnswer').append(`${mathObject.answer}`);
+        $('#lastAnswer').append(`${response[i].answer}`);
     }
  
 }
@@ -144,4 +149,17 @@ function addInputValue(){
 function clear(){
     $('#input1').val('');
     // $('#input2').val('');
+}
+
+function reEnter(){
+    console.log('RENTER CLICKED');
+    console.log($(this).attr('id'));
+    // let regexp = /=/;
+    // const searchTerm = '=';
+    // const indexEquals= this.split(" ");
+    // console.log(indexEquals);
+    console.log(storedArray[$(this).attr('id')]);
+    $('#input1').val('');
+    $('#input1').val(`${storedArray[$(this).attr('id')].input1}`);
+    
 }
