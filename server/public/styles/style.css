@@ -12,6 +12,7 @@
 
 button {
       width: 25px;
+
   }
 
 body {
@@ -19,6 +20,7 @@ body {
         grid-template-rows:4;
         min-height: 100vh;
         max-height: max-content;
+        font-family: futura, sans-serif;
     }
 
 .main {
@@ -60,4 +62,12 @@ input {
 h2 {
     color:azure;
     font-size: 42pt;
+}
+
+h1 {
+    color:azure;
+}
+
+p {
+    color:azure;
 }

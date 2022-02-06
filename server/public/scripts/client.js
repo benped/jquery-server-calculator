@@ -46,6 +46,7 @@ function sendData(){
     }).then(function(response){
         console.log('sendData success!', response);
         clearDataTest();
+        clear();
         console.log('Get answer back is', getAnswerBack());
 
     }).catch(function(response){
@@ -66,6 +67,18 @@ function getAnswerBack(){
     })
 
     };
+
+function deleteArray(){
+    $.ajax({
+        method: 'DELETE',
+        url: '/delete'
+    }).then(function(response){
+        console.log('Delete success!,' response);
+        getAnswerBack();
+    }).catch(function(response){
+        console.log('Delete failed');
+    })
+}
 
 
 // -------------- BASE FUNCTIONALITY ------------------
@@ -125,5 +138,5 @@ function addInputValue(){
 
 function clear(){
     $('#input1').val('');
-    $('#input2').val('');
+    // $('#input2').val('');
 }
