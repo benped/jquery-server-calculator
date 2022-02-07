@@ -1,9 +1,23 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+JQuery Server Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Duration: 1 Weekend Project
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This was built over the course of 48 hours. It takes the inputs from the calculator buttons, sends them to a node.js server, which parses the numbers and operators and returns an array of problems and solutions. 
+
+The client side then displays that array on the dom, with the last answer prominent. 
+
+Users can clear the array with the delete button. 
+
+## Prerequisites
+Node.js
+Express
+Javascript
+Jquery 
+
+## Installation
+
+npm install  should get you everything you need. Has a module for express and for body-parser. 
